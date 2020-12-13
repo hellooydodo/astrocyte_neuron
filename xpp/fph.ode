@@ -1,0 +1,15 @@
+#Morris-Lecar model
+v'=0.2*(-gl*(v-vl)-gk*n*(v-vk)-gca*minf(v)*(v-vca)+I)
+n'=lamda*(ninf(v)-n)/tau(v)
+
+par I=0
+par gl=0.5,gk=2,gca=1.1
+par vl=-0.5,vk=-0.7,vca=1
+par lamda=0.04,v1=-0.01,v2=0.15,v3=0.0166666667,v4=0.25
+minf(v)=0.5*(1+tanh((v-v1)/v2))
+ninf(v)=0.5*(1+tanh((v-v3)/v4))
+tau(v)=1/cosh((v-v3)/(2*v4))
+
+
+#@xlo=0,xhi=100,ylo=-0.8333,yhi=0.8333,total=1000
+#@maxstor=10000
