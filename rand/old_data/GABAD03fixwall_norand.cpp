@@ -195,10 +195,10 @@ double Vsmall[2][N+1];//´¢´æ1£¬1µãµ½ÖĞ¼äÄÇ¸öµã£¬µÚÒ»ÁĞ´æv£¬µÚ¶şÁĞ´æËù¾­Àú×îĞ¡Öµµ
         for(int i = 1;i <= N;i++){ //¼ÆËãµÄÖ÷Òª²¿·Ö
             for(int j = 1;j <= N;j++){
                 Isy[i][j] = -D * (s0[i][j+1] + s0[i][j-1] + s0[i+1][j] + s0[i-1][j]) * (v0[i][j] - Vsyn); //Eq.4
-                //double r = rand() / 32768.0;
+                //double r = rand() ;
                 //if ((i <=8 && j <=8) || (i <=8 && j > (N-8)) || (i >(N-8) && j <=8) || (i>(N-8) && j >(N-8)) )
                 //if(i>(N_middle-4) && j>(N_middle-4) && i<=(N_middle+4) && j<=(N_middle+4)){
-                //    Isy[i][j] = Isy[i][j] + 0.5*r*Isy[i][j];
+                //    Isy[i][j] = Isy[i][j] + 0.5*((r % 2) - 1)*Isy[i][j];
                 //}
                 v[i][j] = v0[i][j] + (Iion(v0[i][j],n0[i][j])+ Iex + Isy[i][j] )/cm*dt;
                 n[i][j] = n0[i][j] + Eq2(v0[i][j],n0[i][j])*dt;
