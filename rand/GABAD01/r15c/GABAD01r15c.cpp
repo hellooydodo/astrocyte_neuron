@@ -11,11 +11,12 @@
 int const  N=101;//ÕâÀïÑ¡¸öÆæÊı£¬ÎªÁË¼ì²â×îÖĞ¼äµÄµã
 
 
-double D=0.3;//,T;//TÊÇ¸öÉ¶
+double D=0.1;//,T;//TÊÇ¸öÉ¶
 double step=0.01;
 //double ar=1.1,ad=0.19;//AMPAdµÄÇé¿ö
 double ar=5.0,ad=0.18;//GABAµÄÇé¿ö
 double Vsyn=-60.0;//GABAµÄÇé¿öÊÇ-60£¬AMPAµÄÇé¿öÊÇ0
+//double Vsyn=0;
 
 double v[N+2][N+2],n[N+2][N+2],s[N+2][N+2];//m[N+2][N+2],h[N+2][N+2],
 double v0[N+2][N+2],n0[N+2][N+2],s0[N+2][N+2];//m0[N+2][N+2],h0[N+2][N+2],
@@ -136,11 +137,11 @@ double Vsmall[2][N+1];//´¢´æ1£¬1µãµ½ÖĞ¼äÄÇ¸öµã£¬µÚÒ»ÁĞ´æv£¬µÚ¶şÁĞ´æËù¾­Àú×îĞ¡Öµµ
 		  {
 
 	    	Isy=-D*(s0[i][j+1]+s0[i][j-1]+s0[i+1][j]+s0[i-1][j])*(v0[i][j]-Vsyn);
-			double r= rand() ;//ÕâÀï²âÊÔÒ»ÏÂnoisy
-			//if ((i<8 && j<8) || (i>(N-8) && j>(N-8)) || (i<8 && j>(N-8)) || (i>(N-8) && j<8)){
+			double r= rand() / 32768.0;//ÕâÀï²âÊÔÒ»ÏÂnoisy
+			if ((i<8 && j<8) || (i>(N-8) && j>(N-8)) || (i<8 && j>(N-8)) || (i>(N-8) && j<8)){
 			//if(i>(N_middle-8) && j>(N_middle-8) && i<=(N_middle+8) && j<=(N_middle+8)){
-            //        Isy =  2*((r % 2) - 1)*Isy;
-            //}
+                    Isy =  1.5*2*(r-0.5)*Iex;
+            }
 			v[i][j]=v0[i][j]+f(v0[i][j],n0[i][j],Iex,Isy)*step;//+(r*2-1)*0.3;// *pow(10,-2);
             n[i][j]=n0[i][j]+gn(v0[i][j],n0[i][j])*step;
 			if(v0[i][j]<2)
@@ -209,7 +210,7 @@ double Vsmall[2][N+1];//´¢´æ1£¬1µãµ½ÖĞ¼äÄÇ¸öµã£¬µÚÒ»ÁĞ´æv£¬µÚ¶şÁĞ´æËù¾­Àú×îĞ¡Öµµ
          Vsumold=Vsum;
 
 	        if (ss%100 == 0){
-            char s3[255] = "v_GABAD03_middle.txt";
+            char s3[255] = "v_GABAD01_middle.txt";
             fp7 = fopen(s3,"a+");
             fprintf(fp7,"%.4f\n",v0[N_middle][N_middle]);
             fclose(fp7);
@@ -222,9 +223,9 @@ double Vsmall[2][N+1];//´¢´æ1£¬1µãµ½ÖĞ¼äÄÇ¸öµã£¬µÚÒ»ÁĞ´æv£¬µÚ¶şÁĞ´æËù¾­Àú×îĞ¡Öµµ
             char s1[255];
             char s2[255];
                  //scanf_s("%d",&ss);
-            sprintf(s, "%dvGABAD03.txt", ss/100);
-            sprintf(s1, "%dnGABAD03.txt", ss/100);
-            sprintf(s2, "%dsGABAD03.txt", ss/100);
+            sprintf(s, "%dvGABAD01.txt", ss/100);
+            sprintf(s1, "%dnGABAD01.txt", ss/100);
+            sprintf(s2, "%dsGABAD01.txt", ss/100);
             fp2=fopen(s,"w");//fp2´æ×ÅÃ¿Ò»Ç§ºÁÃë¼ÇÂ¼Ò»¸ö°ßÍ¼
             fp5=fopen(s1,"w");//fp5´æ×ÅÃ¿Ò»Ç§ºÁÃë¼ÇÂ¼Ò»¸ö±äÁ¿n
             fp6=fopen(s2,"w");//fp6´æ×ÅÃ¿Ò»Ç§ºÁÃë¼ÇÂ¼Ò»¸ö±äÁ¿s
