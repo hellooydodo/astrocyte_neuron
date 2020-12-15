@@ -141,7 +141,7 @@ double Vsmall[2][N+1];//´¢´æ1£¬1µãµ½ÖĞ¼äÄÇ¸öµã£¬µÚÒ»ÁĞ´æv£¬µÚ¶şÁĞ´æËù¾­Àú×îĞ¡Öµµ
 			if(i>(N_middle-8) && j>(N_middle-8) && i<=(N_middle+8) && j<=(N_middle+8)){
                     //Isy =  0.3*2*(r-0.5)*Iex;
                 double r= rand() / 32768.0;//ÕâÀï²âÊÔÒ»ÏÂnoisy
-            	v[i][j] = v[i][j] +(r*2-1)*1.5;
+            	v[i][j] = v[i][j] +(r*2-1)*5;
             }
             n[i][j]=n0[i][j]+gn(v0[i][j],n0[i][j])*step;
 			if(v0[i][j]<2)

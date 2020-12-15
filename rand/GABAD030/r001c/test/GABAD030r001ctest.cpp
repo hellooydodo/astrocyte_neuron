@@ -11,7 +11,7 @@
 int const  N=101;//ÕâÀïÑ¡¸öÆæÊı£¬ÎªÁË¼ì²â×îÖĞ¼äµÄµã
 
 
-double D=0.14;//,T;//TÊÇ¸öÉ¶
+double D=0.30;//,T;//TÊÇ¸öÉ¶
 double step=0.01;
 //double ar=1.1,ad=0.19;//AMPAdµÄÇé¿ö
 double ar=5.0,ad=0.18;//GABAµÄÇé¿ö
@@ -137,11 +137,11 @@ double Vsmall[2][N+1];//´¢´æ1£¬1µãµ½ÖĞ¼äÄÇ¸öµã£¬µÚÒ»ÁĞ´æv£¬µÚ¶şÁĞ´æËù¾­Àú×îĞ¡Öµµ
 		  {
 	    	Isy=-D*(s0[i][j+1]+s0[i][j-1]+s0[i+1][j]+s0[i-1][j])*(v0[i][j]-Vsyn);	
 			v[i][j]=v0[i][j]+f(v0[i][j],n0[i][j],Iex,Isy)*step;
-			//if ((i<8 && j<8) || (i>(N-8) && j>(N-8)) || (i<8 && j>(N-8)) || (i>(N-8) && j<8)){
-			if(i>(N_middle-8) && j>(N_middle-8) && i<=(N_middle+8) && j<=(N_middle+8)){
+			if ((i<8 && j<8) || (i>(N-8) && j>(N-8)) || (i<8 && j>(N-8)) || (i>(N-8) && j<8)){
+			//if(i>(N_middle-8) && j>(N_middle-8) && i<=(N_middle+8) && j<=(N_middle+8)){
                     //Isy =  0.3*2*(r-0.5)*Iex;
-                double r= rand() / 32768.0;//ÕâÀï²âÊÔÒ»ÏÂnoisy
-            	v[i][j] = v[i][j] +(r*2-1)*1.5;
+                //double r= rand() / 32768.0;//ÕâÀï²âÊÔÒ»ÏÂnoisy
+            	//v[i][j] = v[i][j] +(r*2-1)*0.01;
             }
             n[i][j]=n0[i][j]+gn(v0[i][j],n0[i][j])*step;
 			if(v0[i][j]<2)

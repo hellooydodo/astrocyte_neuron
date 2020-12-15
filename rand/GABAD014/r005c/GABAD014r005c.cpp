@@ -137,11 +137,11 @@ double Vsmall[2][N+1];//´¢´æ1£¬1µãµ½ÖÐ¼äÄÇ¸öµã£¬µÚÒ»ÁÐ´æv£¬µÚ¶þÁÐ´æËù¾­Àú×îÐ¡Öµµ
 		  {
 	    	Isy=-D*(s0[i][j+1]+s0[i][j-1]+s0[i+1][j]+s0[i-1][j])*(v0[i][j]-Vsyn);	
 			v[i][j]=v0[i][j]+f(v0[i][j],n0[i][j],Iex,Isy)*step;
-			//if ((i<8 && j<8) || (i>(N-8) && j>(N-8)) || (i<8 && j>(N-8)) || (i>(N-8) && j<8)){
-			if(i>(N_middle-8) && j>(N_middle-8) && i<=(N_middle+8) && j<=(N_middle+8)){
+			if ((i<8 && j<8) || (i>(N-8) && j>(N-8)) || (i<8 && j>(N-8)) || (i>(N-8) && j<8)){
+			//if(i>(N_middle-8) && j>(N_middle-8) && i<=(N_middle+8) && j<=(N_middle+8)){
                     //Isy =  0.3*2*(r-0.5)*Iex;
                 double r= rand() / 32768.0;//ÕâÀï²âÊÔÒ»ÏÂnoisy
-            	v[i][j] = v[i][j] +(r*2-1)*1.5;
+            	v[i][j] = v[i][j] +(r*2-1)*0.05;
             }
             n[i][j]=n0[i][j]+gn(v0[i][j],n0[i][j])*step;
 			if(v0[i][j]<2)
