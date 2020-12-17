@@ -11,7 +11,7 @@
 int const  N=101;//ÕâÀïÑ¡¸öÆæÊı£¬ÎªÁË¼ì²â×îÖĞ¼äµÄµã
 
 
-double D=0.3;//,T;//TÊÇ¸öÉ¶
+double D=0.075;//,T;//TÊÇ¸öÉ¶
 double step=0.01;
 //double ar=1.1,ad=0.19;//AMPAdµÄÇé¿ö
 double ar=5.0,ad=0.18;//GABAµÄÇé¿ö
@@ -143,7 +143,7 @@ double Vsmall[2][N+1];//´¢´æ1£¬1µãµ½ÖĞ¼äÄÇ¸öµã£¬µÚÒ»ÁĞ´æv£¬µÚ¶şÁĞ´æËù¾­Àú×îĞ¡Öµµ
             //}
 			v[i][j]=v0[i][j]+f(v0[i][j],n0[i][j],Iex,Isy)*step;//+(r*2-1)*0.3;// *pow(10,-2);
             n[i][j]=n0[i][j]+gn(v0[i][j],n0[i][j])*step;
-			if(v0[i][j]<0)
+			if(v0[i][j]<1/60)
 			{
 		    s[i][j]=s0[i][j]+gs(v0[i][j],s0[i][j])*step;
 			}
