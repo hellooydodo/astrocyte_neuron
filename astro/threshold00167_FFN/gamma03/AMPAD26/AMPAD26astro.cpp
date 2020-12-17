@@ -7,8 +7,8 @@
 #define  e 2.71828
 
 int const  N = 101;//这里选个奇数，为了检测最中间的点
-double FFN;
-double Isy1,Isy2;
+double FFN=0;
+double Isy1=1.3244e-1,Isy2=3.6714e-1;
 double dt = 1e-2; //0.01ms
 double ar = 1.1,ad = 0.19;//AMPAd的情况
 //double ar=5.0,ad=0.18;//GABA的情况
@@ -23,7 +23,7 @@ double f[N+1][N+1],f0[N+1][N+1];
 double I_ast[N+1][N+1];
 int const time_step = 100001;
 
-FILE *fp1,*fp2,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8;//,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10,*fp11,*fp12,*fp13;//,*fp12,*fp13,*fp14,*fp15,*fp16,*fp17,*fp18;
+FILE *fp1,*fp2,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9;//,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10,*fp11,*fp12,*fp13;//,*fp12,*fp13,*fp14,*fp15,*fp16,*fp17,*fp18;
                                    //fp5和fp6分别存储n和s
 double max(double a,double b){
     if (a > b) return a;
@@ -64,7 +64,7 @@ double Iion(double v,double n) //Eq.1
 
 int main()
 {
-	int ss;
+	long int ss;
     double Isy[N+2][N+2];
     double times=0.0;
 	int N_middle;
@@ -136,9 +136,9 @@ int main()
 	double const theta_s = 0.2, delta_s = 0.02; // [T]
 	double const alpha = 0.001, v_star = -0.22, epsilon = 0.0005; // Islow
     double const alpha_s = 0.1, beta_s = 0.05; //g
-    double const g_s = 0.075; // Isy,相当于D
+    double const g_s = 2.6/4; // Isy,相当于D
     double const tau_ca = 6, kappa = 0.5, Ca_th = 0.2; //f
-    double const gamma = 0.1, P = 0.8; //Iast
+    double const gamma = 0.3, P = 0.8; //Iast
 
 	ss = 0;
 	bool astro = 1;
@@ -179,10 +179,11 @@ int main()
                 I_slow[i][j] = I_slow0[i][j] + epsilon*(v_star - v0[i][j] - alpha*I_slow0[i][j])*dt;
                 g[i][j] = g0[i][j] + (alpha_s*T[i][j]*(1 - g0[i][j]) - beta_s*g0[i][j])*dt; // g  神经元开度
                 Isy[i][j] = -g_s*(v0[i][j] - Vsyn)*(g0[i-1][j] + g0[i][j-1] + g0[i+1][j] + g0[i][j+1]); //统一了羊师兄和王荣师兄的形式
-                n[i][j] = n0[i][j] + phi*((n_inf(v0[i][j]) - n0[i][j])/tau_n(v0[i][j]))*dt;
+                FFN += (Isy[i][j] > Isy1 && Isy[i][j] < Isy2)*Isy[i][j];
+				n[i][j] = n0[i][j] + phi*((n_inf(v0[i][j]) - n0[i][j])/tau_n(v0[i][j]))*dt;
                 
                 v[i][j] = v0[i][j] + (Iion(v0[i][j],n0[i][j])+ Iex + Isy[i][j] + I_slow0[i][j] +  I_ast[i][j])/cm*dt;
-				if (v0[i][j] < 0 ){
+				if (v0[i][j] < 1/60 ){
                 	g[i][j] = g0[i][j] + ( -ad * g0[i][j])*dt;
 				}
                 else {g[i][j] = 1; }
@@ -209,11 +210,11 @@ int main()
 			//}
 
         if (ss%100 == 0){
-            char s3[255] = "v_AMPAD03_middle.txt";
+            char s3[255] = "v_AMPAD26_middle.txt";
             fp7 = fopen(s3,"a+");
             fprintf(fp7,"%.4f\n",v0[N_middle][N_middle]);
             fclose(fp7);
-            char s4[255] = "v_Isyn_AMPAD03_sample.txt";
+            char s4[255] = "v_Isyn_AMPAD26_sample.txt";
             fp8 = fopen(s4,"a+");
             fprintf(fp8,"%.4f %4f\n",v0[44][55],Isy[44][55]);
             fclose(fp8);
@@ -229,9 +230,9 @@ int main()
             char s2[255];
 
                  //scanf_s("%d",&ss);
-            sprintf(s, "%dvAMPAD03.txt", ss/100);
-            sprintf(s1, "%dnAMPAD03.txt", ss/100);
-            sprintf(s2, "%dsAMPAD03.txt", ss/100);
+            sprintf(s, "%dvAMPAD26.txt", ss/100);
+            sprintf(s1, "%dnAMPAD26.txt", ss/100);
+            sprintf(s2, "%dsAMPAD26.txt", ss/100);
             fp2=fopen(s,"w");//fp2存着每一千毫秒记录一个斑图
             fp5=fopen(s1,"w");//fp5存着每一千毫秒记录一个变量n
             fp6=fopen(s2,"w");//fp6存着每一千毫秒记录一个变量s
@@ -259,13 +260,14 @@ int main()
                 fprintf(fp6,"\n");
             }
             fclose(fp6);
-            FFN = 0;
-            for(int i = 1; i <= N; i++){
-            	for (int j = 1; j <= N; j++){
-            		FFN += (Isy[i][j]>Isy1 && Isy[i][j]<Isy2)Isy[i][j];
-				}
-			}
+			FFN /=(10000*100);
 			FFN /=(N*N);
+			char s5[255];
+			sprintf(s5, "%dFFN_AMPAD26.txt", ss/100);
+			fp9 = fopen(s5,"a+");
+            fprintf(fp9,"%.4f",FFN);
+            fclose(fp9);
+            FFN = 0; 
             printf("%d",ss/100);
         }
 
