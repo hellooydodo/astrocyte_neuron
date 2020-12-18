@@ -94,8 +94,8 @@ int main()
    			f[i][j] = 0.5;
 		   }
    }
-   for(int i = 1; i <= N;i++){ //（4）
-        for(int j = 1;j <= N;j++){
+   for(int i = 0; i <= N+1;i++){ //（4）
+        for(int j = 0;j <= N+1;j++){
                 v0[i][j]=-0.419417;
                 n0[i][j]=0.3086478;
                 g0[i][j]=0.8527076;
@@ -176,11 +176,11 @@ int main()
                 	//表示了某一个神经元受到周围胶质细胞的影响，(i,j)神经元附近的胶质细胞如上 
 				}			
                 //I_slow[i][j] = I_slow0[i][j] + epsilon*(v_star - v0[i][j] - alpha*I_slow0[i][j])*dt;
-                g[i][j] = g0[i][j] + (alpha_s*T[i][j]*(1 - g0[i][j]) - beta_s*g0[i][j])*dt; // g  神经元开度
+                //g[i][j] = g0[i][j] + (alpha_s*T[i][j]*(1 - g0[i][j]) - beta_s*g0[i][j])*dt; // g  神经元开度
                 Isy[i][j] = -g_s*(v0[i][j] - Vsyn)*(g0[i-1][j] + g0[i][j-1] + g0[i+1][j] + g0[i][j+1]); //统一了羊师兄和王荣师兄的形式
-                n[i][j] = n0[i][j] + phi*((n_inf(v0[i][j]) - n0[i][j])/tau_n(v0[i][j]))*dt;
-                
-                v[i][j] = v0[i][j] + (Iion(v0[i][j],n0[i][j])+ Iex + Isy[i][j] + I_slow0[i][j] +  I_ast[i][j])/cm*dt;
+                v[i][j] = v0[i][j] + (Iion(v0[i][j],n0[i][j])+ Iex + Isy[i][j])/cm*dt;
+				n[i][j] = n0[i][j] + phi*((n_inf(v0[i][j]) - n0[i][j])/tau_n(v0[i][j]))*dt;
+               // v[i][j] = v0[i][j] + (Iion(v0[i][j],n0[i][j])+ Iex + Isy[i][j] + I_slow0[i][j] +  I_ast[i][j])/cm*dt;
 				if (v0[i][j] < 1/60 ){
                 	g[i][j] = g0[i][j] + ( -ad * g0[i][j])*dt;
 				}
