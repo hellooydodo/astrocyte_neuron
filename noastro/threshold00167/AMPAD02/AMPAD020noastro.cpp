@@ -86,7 +86,7 @@ int main()
 //    fp8=fopen("synaptic.dat","wb");
 ///////initial conditions//////////////////////
 
-for (int i = 0; i <= N+1; i++){
+   for (int i = 0; i <= N+1; i++){
    		for (int j = 0; j <= N+1; j++){
    			Ip3_0[i][j] = 0.2;
    			q0[i][j] = 0.5;
