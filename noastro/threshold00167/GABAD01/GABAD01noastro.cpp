@@ -86,16 +86,16 @@ int main()
 //    fp8=fopen("synaptic.dat","wb");
 ///////initial conditions//////////////////////
 
-   for (int i = 1; i <= N; i++){
-   		for (int j = 1; j <= N; j++){
+for (int i = 0; i <= N+1; i++){
+   		for (int j = 0; j <= N+1; j++){
    			Ip3_0[i][j] = 0.2;
    			q0[i][j] = 0.5;
    			Ca0[i][j] = 0.5;
    			f[i][j] = 0.5;
 		   }
    }
-   for(int i = 1; i <= N;i++){ //（4）
-        for(int j = 1;j <= N;j++){
+   for(int i = 0; i <= N+1;i++){ //（4）
+        for(int j = 0;j <= N+1;j++){
                 v0[i][j]=-0.419417;
                 n0[i][j]=0.3086478;
                 g0[i][j]=0.8527076;
@@ -208,11 +208,11 @@ int main()
 			//}
 
         if (ss%100 == 0){
-            char s3[255] = "v_GABAD03_middle.txt";
+            char s3[255] = "v_GABAD01_middle.txt";
             fp7 = fopen(s3,"a+");
             fprintf(fp7,"%.4f\n",v0[N_middle][N_middle]);
             fclose(fp7);
-            char s4[255] = "v_Isyn_GABAD03_sample.txt";
+            char s4[255] = "v_Isyn_GABAD01_sample.txt";
             fp8 = fopen(s4,"a+");
             fprintf(fp8,"%.4f %4f\n",v0[44][55],Isy[44][55]);
             fclose(fp8);
@@ -228,9 +228,9 @@ int main()
             char s2[255];
 
                  //scanf_s("%d",&ss);
-            sprintf(s, "%dvGABAD03.txt", ss/100);
-            sprintf(s1, "%dnGABAD03.txt", ss/100);
-            sprintf(s2, "%dsGABAD03.txt", ss/100);
+            sprintf(s, "%dvGABAD01.txt", ss/100);
+            sprintf(s1, "%dnGABAD01.txt", ss/100);
+            sprintf(s2, "%dsGABAD01.txt", ss/100);
             fp2=fopen(s,"w");//fp2存着每一千毫秒记录一个斑图
             fp5=fopen(s1,"w");//fp5存着每一千毫秒记录一个变量n
             fp6=fopen(s2,"w");//fp6存着每一千毫秒记录一个变量s

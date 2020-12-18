@@ -9,9 +9,9 @@
 int const  N = 101;//这里选个奇数，为了检测最中间的点
 
 double dt = 1e-2; //0.01ms
-double ar = 1.1,ad = 0.19;//AMPAd的情况
-//double ar=5.0,ad=0.18;//GABA的情况
-double Vsyn = 0;//GABA的情况是-0.3，AMPA的情况是0
+//double ar = 1.1,ad = 0.19;//AMPAd的情况
+double ar=5.0,ad=0.18;//GABA的情况
+double Vsyn = -0.5;//GABA的情况是-0.5，AMPA的情况是0
 
 double v[N+1][N+1],n[N+1][N+1];//m[N+2][N+2],h[N+2][N+2],
 double v0[N+1][N+1],n0[N+1][N+1];//m0[N+2][N+2],h0[N+2][N+2],
@@ -135,7 +135,7 @@ for (int i = 0; i <= N+1; i++){
 	double const theta_s = 0.2, delta_s = 0.02; // [T]
 	double const alpha = 0.001, v_star = -0.22, epsilon = 0.0005; // Islow
     double const alpha_s = 0.1, beta_s = 0.05; //g
-    double const g_s = 0.075; // Isy,相当于D
+    double const g_s = 4.4/4; // Isy,相当于D
     double const tau_ca = 6, kappa = 0.5, Ca_th = 0.2; //f
     double const gamma = 0.05, P = 0.8; //Iast
 
@@ -176,7 +176,7 @@ for (int i = 0; i <= N+1; i++){
                 	//表示了某一个神经元受到周围胶质细胞的影响，(i,j)神经元附近的胶质细胞如上 
 				}			
                 //I_slow[i][j] = I_slow0[i][j] + epsilon*(v_star - v0[i][j] - alpha*I_slow0[i][j])*dt;
-                g[i][j] = g0[i][j] + (alpha_s*T[i][j]*(1 - g0[i][j]) - beta_s*g0[i][j])*dt; // g  神经元开度
+                //g[i][j] = g0[i][j] + (alpha_s*T[i][j]*(1 - g0[i][j]) - beta_s*g0[i][j])*dt; // g  神经元开度
                 Isy[i][j] = -g_s*(v0[i][j] - Vsyn)*(g0[i-1][j] + g0[i][j-1] + g0[i+1][j] + g0[i][j+1]); //统一了羊师兄和王荣师兄的形式
                 n[i][j] = n0[i][j] + phi*((n_inf(v0[i][j]) - n0[i][j])/tau_n(v0[i][j]))*dt;
                 
@@ -208,11 +208,11 @@ for (int i = 0; i <= N+1; i++){
 			//}
 
         if (ss%100 == 0){
-            char s3[255] = "v_AMPAD03_middle.txt";
+            char s3[255] = "v_GABAD44_middle.txt";
             fp7 = fopen(s3,"a+");
             fprintf(fp7,"%.4f\n",v0[N_middle][N_middle]);
             fclose(fp7);
-            char s4[255] = "v_Isyn_AMPAD03_sample.txt";
+            char s4[255] = "v_Isyn_GABAD44_sample.txt";
             fp8 = fopen(s4,"a+");
             fprintf(fp8,"%.4f %4f\n",v0[44][55],Isy[44][55]);
             fclose(fp8);
@@ -228,9 +228,9 @@ for (int i = 0; i <= N+1; i++){
             char s2[255];
 
                  //scanf_s("%d",&ss);
-            sprintf(s, "%dvAMPAD03.txt", ss/100);
-            sprintf(s1, "%dnAMPAD03.txt", ss/100);
-            sprintf(s2, "%dsAMPAD03.txt", ss/100);
+            sprintf(s, "%dvGABAD44.txt", ss/100);
+            sprintf(s1, "%dnGABAD44.txt", ss/100);
+            sprintf(s2, "%dsGABAD44.txt", ss/100);
             fp2=fopen(s,"w");//fp2存着每一千毫秒记录一个斑图
             fp5=fopen(s1,"w");//fp5存着每一千毫秒记录一个变量n
             fp6=fopen(s2,"w");//fp6存着每一千毫秒记录一个变量s

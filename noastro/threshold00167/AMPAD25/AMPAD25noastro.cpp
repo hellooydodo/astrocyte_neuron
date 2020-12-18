@@ -86,16 +86,16 @@ int main()
 //    fp8=fopen("synaptic.dat","wb");
 ///////initial conditions//////////////////////
 
-   for (int i = 1; i <= N; i++){
-   		for (int j = 1; j <= N; j++){
+for (int i = 0; i <= N+1; i++){
+   		for (int j = 0; j <= N+1; j++){
    			Ip3_0[i][j] = 0.2;
    			q0[i][j] = 0.5;
    			Ca0[i][j] = 0.5;
    			f[i][j] = 0.5;
 		   }
    }
-   for(int i = 1; i <= N;i++){ //£¨4£©
-        for(int j = 1;j <= N;j++){
+   for(int i = 0; i <= N+1;i++){ //£¨4£©
+        for(int j = 0;j <= N+1;j++){
                 v0[i][j]=-0.419417;
                 n0[i][j]=0.3086478;
                 g0[i][j]=0.8527076;
