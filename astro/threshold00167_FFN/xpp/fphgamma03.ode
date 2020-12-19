@@ -11,8 +11,6 @@ par gl=0.5,gk=2,gca=1.1
 par vl=-0.5,vk=-0.7,vca=1
 par lamda=0.04,v1=-0.01,v2=0.15,v3=0.01666667,v4=0.25
 
-#astro parameter
-par Iex=0
 #Jchannel,Jpump,Jleak
 par c1=0.185,av1=6,av2=0.11,av3=0.9,k3=0.5
 #m_inf,n_inf,alpha_q,beta_q,Ca_er...
