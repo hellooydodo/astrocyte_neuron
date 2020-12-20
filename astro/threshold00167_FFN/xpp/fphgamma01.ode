@@ -1,12 +1,12 @@
 #Morris-Lecar model
-v'=0.2*(-gl*(v-vl)-gk*n*(v-vk)-gca*minf(v)*(v-vca)+I+I_ast)
+v'=0.2*(-gl*(v-vl)-gk*n*(v-vk)-gca*minf(v)*(v-vca)+Isy+I_ast+Iex)
 n'=lamda*(ninf(v)-n)/tau(v)
 Ip3'=(Ip3_st-Ip3)/tau_Ip3+r_ip3/(1+exp(-(v-theta_s)/delta_s))
 q'=alpha_q*(1-q)-beta_q*q
 Ca'=J_channel+J_pump+J_leak
 f'=-f/tau_ca+(1-f)*kappa*max(Ca-Ca_th,0) 
 #parameter
-par I=0
+par Isy=0
 par gl=0.5,gk=2,gca=1.1
 par vl=-0.5,vk=-0.7,vca=1
 par lamda=0.04,v1=-0.01,v2=0.15,v3=0.01666667,v4=0.25
@@ -22,7 +22,7 @@ par k_g=0.1
 par alpha=0.001,v_star=-0.22,epsilon=0.0005
 par alpha_s=0.1,beta_s=0.05
 par theta_s=0.2,delta_s=0.02
-par g_s=0.075
+par g_s=0.3/4
 par tau_ca=6,kappa=0.5,Ca_th=0.2
 par gamma=0.1,P=0.8
 
