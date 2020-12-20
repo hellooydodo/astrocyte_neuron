@@ -13,7 +13,7 @@ double Isy1=1.537e-1-Iex,Isy2=3.897e-1-Iex;;
 double dt = 1e-2; //0.01ms
 //double ar = 1.1,ad = 0.19;//AMPAd的情况
 double ar=5.0,ad=0.18;//GABA的情况
-double Vsyn = -0.3;//GABA的情况是-0.3，AMPA的情况是0
+double Vsyn = -0.5;//GABA的情况是-0.3，AMPA的情况是0
 
 double v[N+1][N+1],n[N+1][N+1];//m[N+2][N+2],h[N+2][N+2],
 double v0[N+1][N+1],n0[N+1][N+1];//m0[N+2][N+2],h0[N+2][N+2],
