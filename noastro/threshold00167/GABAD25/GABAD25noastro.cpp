@@ -13,13 +13,13 @@ double dt = 1e-2; //0.01ms
 double ar=5.0,ad=0.18;//GABA的情况
 double Vsyn = -0.5;//GABA的情况是-0.5，AMPA的情况是0
 
-double v[N+1][N+1],n[N+1][N+1];//m[N+2][N+2],h[N+2][N+2],
-double v0[N+1][N+1],n0[N+1][N+1];//m0[N+2][N+2],h0[N+2][N+2],
-double Ip3[N+1][N+1],Ca[N+1][N+1],J_g[N+1][N+1],T[N+1][N+1],I_slow[N+1][N+1],g[N+1][N+1];
-double Ip3_0[N+1][N+1],Ca0[N+1][N+1],I_slow0[N+1][N+1],g0[N+1][N+1];
-double q[N+1][N+1],q0[N+1][N+1];
-double f[N+1][N+1],f0[N+1][N+1];
-double I_ast[N+1][N+1];
+double v[N+2][N+2],n[N+2][N+2];//m[N+2][N+2],h[N+2][N+2],
+double v0[N+2][N+2],n0[N+2][N+2];//m0[N+2][N+2],h0[N+2][N+2],
+double Ip3[N+2][N+2],Ca[N+2][N+2],J_g[N+2][N+2],T[N+2][N+2],I_slow[N+2][N+2],g[N+2][N+2];
+double Ip3_0[N+2][N+2],Ca0[N+2][N+2],I_slow0[N+2][N+2],g0[N+2][N+2];
+double q[N+2][N+2],q0[N+2][N+2];
+double f[N+2][N+2],f0[N+2][N+2];
+double I_ast[N+2][N+2];
 int const time_step = 100001;
 
 FILE *fp1,*fp2,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8;//,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10,*fp11,*fp12,*fp13;//,*fp12,*fp13,*fp14,*fp15,*fp16,*fp17,*fp18;
