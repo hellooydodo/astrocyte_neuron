@@ -17,8 +17,8 @@ double dt = 0.01; //0.01ms
 double ar=5.0,ad=0.18;//GABAµÄÇé¿ö
 double Vsyn = -60;//GABAµÄÇé¿öÊÇ-60£¬AMPAµÄÇé¿öÊÇ0
 
-double v[N+1][N+1],n[N+1][N+1],s[N+1][N+1];//m[N+2][N+2],h[N+2][N+2],
-double v0[N+1][N+1],n0[N+1][N+1],s0[N+1][N+1];//m0[N+2][N+2],h0[N+2][N+2],
+double v[N+2][N+2],n[N+2][N+2],s[N+2][N+2];//m[N+2][N+2],h[N+2][N+2],
+double v0[N+2][N+2],n0[N+2][N+2],s0[N+2][N+2];//m0[N+2][N+2],h0[N+2][N+2],
 
 int const time_step = 100001;
 
@@ -157,11 +157,11 @@ double Vsmall[2][N+1];//´¢´æ1£¬1µãµ½ÖÐ¼äÄÇ¸öµã£¬µÚÒ»ÁÐ´æv£¬µÚ¶þÁÐ´æËù¾­Àú×îÐ¡Öµµ
     double const c1 = 0.185, v1 = 6, v2 = 0.11, v3 = 0.9, k3 = 0.1, d1 = 0.13, d2 = 1.049, d3 = 0.9434, d5 = 0.08234, a2 = 0.2, c0 = 2; //Êý¾ÝÀ´×Ô Spontaneous Oscillations of Dressed neurons
     double const Ip3_st = 0.16, tau_Ip3 = 0.00014,r_ip3 = 0.0072;
     double const tau_ca = 6, kappa = 0.5, Ca_th = 0.2, gamma = 1;
-    /*double Ip3[N+1][N+1],Ca[N+1][N+1];
-    double Ip3_0[N+1][N+1],Ca0[N+1][N+1];
-    double q[N+1][N+1],q0[N+1][N+1];
-    double f[N+1][N+1],f0[N+1][N+1];
-    double I_ast[N+1][N+1];*/
+    /*double Ip3[N+2][N+2],Ca[N+2][N+2];
+    double Ip3_0[N+2][N+2],Ca0[N+2][N+2];
+    double q[N+2][N+2],q0[N+2][N+2];
+    double f[N+2][N+2],f0[N+2][N+2];
+    double I_ast[N+2][N+2];*/
 	ss = 0;
 	// for(ss=0;ss<=time_step;ss++)
     while (delta_sumV > -1)
