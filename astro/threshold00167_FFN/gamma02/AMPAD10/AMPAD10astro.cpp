@@ -8,7 +8,8 @@
 
 int const  N = 101;//这里选个奇数，为了检测最中间的点
 double FFN=0;
-double Isy1=1.537e-1,Isy2=3.897e-1;
+double const Iex = 0.22916;//the external current
+double Isy1=1.537e-1-Iex,Isy2=3.897e-1-Iex;;
 double dt = 1e-2; //0.01ms
 double ar = 1.1,ad = 0.19;//AMPAd的情况
 //double ar=5.0,ad=0.18;//GABA的情况
@@ -86,6 +87,7 @@ int main()
 //    fp7=fopen("membrane.dat","wb");
 //    fp8=fopen("synaptic.dat","wb");
 ///////initial conditions//////////////////////
+
    for (int i = 0; i <= N+1; i++){
    		for (int j = 0; j <= N+1; j++){
    			Ip3_0[i][j] = 0.2;
@@ -123,7 +125,7 @@ int main()
         }
     }
 
-    double const Iex = 0.22916;//the external current
+
     double const cm = 5, phi = 0.04; //v,n
     double const c1 = 0.185, v1 = 6, v2 = 0.11, v3 = 0.9, k3 = 0.5; // Jchannel,Jpump,Jleak;
 	double const d1 = 0.13, d2 = 1.049, d3 = 0.9434, d5 = 0.08234, a2 = 0.2, c0 = 2; //m_inf,n_inf,alpha_q,beta_q,Ca_er ...
@@ -178,7 +180,7 @@ int main()
                 I_slow[i][j] = I_slow0[i][j] + epsilon*(v_star - v0[i][j] - alpha*I_slow0[i][j])*dt;
                 g[i][j] = g0[i][j] + (alpha_s*T[i][j]*(1 - g0[i][j]) - beta_s*g0[i][j])*dt; // g  神经元开度
                 Isy[i][j] = -g_s*(v0[i][j] - Vsyn)*(g0[i-1][j] + g0[i][j-1] + g0[i+1][j] + g0[i][j+1]); //统一了羊师兄和王荣师兄的形式
-                FFN += (Isy[i][j] > Isy1 && Isy[i][j] < Isy2)*Isy[i][j];
+                FFN += (Isy[i][j] > Isy1 && Isy[i][j] < Isy2);
 				n[i][j] = n0[i][j] + phi*((n_inf(v0[i][j]) - n0[i][j])/tau_n(v0[i][j]))*dt;
                 
                 v[i][j] = v0[i][j] + (Iion(v0[i][j],n0[i][j])+ Iex + Isy[i][j] + I_slow0[i][j] +  I_ast[i][j])/cm*dt;
@@ -208,12 +210,12 @@ int main()
 		//	fprintf(fp7,"%f\n",BB);
 			//}
 
-        if (ss%100 == 0){
-            char s3[255] = "v_AMPAD10_middle.txt";
+        if (ss>=190000 && ss<=200000 && ss%100 == 0){
+            char s3[255] = "v_AMPAD03_middle.txt";
             fp7 = fopen(s3,"a+");
             fprintf(fp7,"%.4f\n",v0[N_middle][N_middle]);
             fclose(fp7);
-            char s4[255] = "v_Isyn_AMPAD10_sample.txt";
+            char s4[255] = "v_Isyn_AMPAD03_sample.txt";
             fp8 = fopen(s4,"a+");
             fprintf(fp8,"%.4f %4f\n",v0[44][55],Isy[44][55]);
             fclose(fp8);
@@ -259,12 +261,13 @@ int main()
                 fprintf(fp6,"\n");
             }
             fclose(fp6);
-			FFN /=(10000*100);
+        }
+        if (ss%(2000*100)==0){
+			FFN /=(2000*100);
 			FFN /=(N*N);
-			char s5[255];
-			sprintf(s5, "%dFFN_AMPAD10.txt", ss/100);
+			char s5[255] = "FFN_AMPAD10.txt";
 			fp9 = fopen(s5,"a+");
-            fprintf(fp9,"%.4f",FFN);
+            fprintf(fp9,"%.4f\n",FFN);
             fclose(fp9);
             FFN = 0; 
             printf("%d",ss/100);

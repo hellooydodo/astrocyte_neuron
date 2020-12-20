@@ -11,9 +11,9 @@ double FFN=0;
 double const Iex = 0.22916;//the external current
 double Isy1=1.3244e-1-Iex,Isy2=3.6714e-1-Iex;
 double dt = 1e-2; //0.01ms
-double ar = 1.1,ad = 0.19;//AMPAd的情况
-//double ar=5.0,ad=0.18;//GABA的情况
-double Vsyn = 0;//GABA的情况是-0.3，AMPA的情况是0
+//double ar = 1.1,ad = 0.19;//AMPAd的情况
+double ar=5.0,ad=0.18;//GABA的情况
+double Vsyn = -0.3;//GABA的情况是-0.3，AMPA的情况是0
 
 double v[N+1][N+1],n[N+1][N+1];//m[N+2][N+2],h[N+2][N+2],
 double v0[N+1][N+1],n0[N+1][N+1];//m0[N+2][N+2],h0[N+2][N+2],
@@ -137,7 +137,7 @@ int main()
 	double const theta_s = 0.2, delta_s = 0.02; // [T]
 	double const alpha = 0.001, v_star = -0.22, epsilon = 0.0005; // Islow
     double const alpha_s = 0.1, beta_s = 0.05; //g
-    double const g_s = 1.5/4; // Isy,相当于D
+    double const g_s = 0.3/4; // Isy,相当于D
     double const tau_ca = 6, kappa = 0.5, Ca_th = 0.2; //f
     double const gamma = 0.3, P = 0.8; //Iast
 
@@ -211,11 +211,11 @@ int main()
 			//}
 
         if (ss>=190000 && ss<=200000 && ss%100 == 0){
-            char s3[255] = "v_AMPAD15_middle.txt";
+            char s3[255] = "v_GABAD03_middle.txt";
             fp7 = fopen(s3,"a+");
             fprintf(fp7,"%.4f\n",v0[N_middle][N_middle]);
             fclose(fp7);
-            char s4[255] = "v_Isyn_AMPAD15_sample.txt";
+            char s4[255] = "v_Isyn_GABAD03_sample.txt";
             fp8 = fopen(s4,"a+");
             fprintf(fp8,"%.4f %4f\n",v0[44][55],Isy[44][55]);
             fclose(fp8);
@@ -231,9 +231,9 @@ int main()
             char s2[255];
 
                  //scanf_s("%d",&ss);
-            sprintf(s, "%dvAMPAD15.txt", ss/100);
-            sprintf(s1, "%dnAMPAD15.txt", ss/100);
-            sprintf(s2, "%dsAMPAD15.txt", ss/100);
+            sprintf(s, "%dvGABAD03.txt", ss/100);
+            sprintf(s1, "%dnGABAD03.txt", ss/100);
+            sprintf(s2, "%dsGABAD03.txt", ss/100);
             fp2=fopen(s,"w");//fp2存着每一千毫秒记录一个斑图
             fp5=fopen(s1,"w");//fp5存着每一千毫秒记录一个变量n
             fp6=fopen(s2,"w");//fp6存着每一千毫秒记录一个变量s
@@ -265,7 +265,7 @@ int main()
         if (ss%(2000*100)==0){
 			FFN /=(2000*100);
 			FFN /=(N*N);
-			char s5[255] = "FFN_AMPAD03.txt";
+			char s5[255] = "FFN_GABAD03.txt";
 			fp9 = fopen(s5,"a+");
             fprintf(fp9,"%.4f\n",FFN);
             fclose(fp9);
