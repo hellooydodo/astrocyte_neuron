@@ -211,11 +211,11 @@ int main()
 			//}
 
         if (ss>=190000 && ss<=200000 && ss%100 == 0){
-            char s3[255] = "v_AMPAD03_middle.txt";
+            char s3[255] = "v_AMPAD10_middle.txt";
             fp7 = fopen(s3,"a+");
             fprintf(fp7,"%.4f\n",v0[N_middle][N_middle]);
             fclose(fp7);
-            char s4[255] = "v_Isyn_AMPAD03_sample.txt";
+            char s4[255] = "v_Isyn_AMPAD10_sample.txt";
             fp8 = fopen(s4,"a+");
             fprintf(fp8,"%.4f %4f\n",v0[44][55],Isy[44][55]);
             fclose(fp8);
