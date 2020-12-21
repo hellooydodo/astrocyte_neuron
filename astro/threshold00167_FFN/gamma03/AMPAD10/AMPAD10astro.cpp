@@ -137,7 +137,7 @@ int main()
 	double const theta_s = 0.2, delta_s = 0.02; // [T]
 	double const alpha = 0.001, v_star = -0.22, epsilon = 0.0005; // Islow
     double const alpha_s = 0.1, beta_s = 0.05; //g
-    double const g_s = 1/4; // Isy,相当于D
+    double const g_s = 1.0/4; // Isy,相当于D
     double const tau_ca = 6, kappa = 0.5, Ca_th = 0.2; //f
     double const gamma = 0.3, P = 0.8; //Iast
 
@@ -211,11 +211,11 @@ int main()
 			//}
 
         if (ss>=190000 && ss<=200000 && ss%100 == 0){
-            char s3[255] = "v_AMPAD03_middle.txt";
+            char s3[255] = "v_AMPAD10_middle.txt";
             fp7 = fopen(s3,"a+");
             fprintf(fp7,"%.4f\n",v0[N_middle][N_middle]);
             fclose(fp7);
-            char s4[255] = "v_Isyn_AMPAD03_sample.txt";
+            char s4[255] = "v_Isyn_AMPAD10_sample.txt";
             fp8 = fopen(s4,"a+");
             fprintf(fp8,"%.4f %4f\n",v0[44][55],Isy[44][55]);
             fclose(fp8);
