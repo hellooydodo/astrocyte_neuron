@@ -137,7 +137,7 @@ int main()
 	double const theta_s = 0.2, delta_s = 0.02; // [T]
 	double const alpha = 0.001, v_star = -0.22, epsilon = 0.0005; // Islow
     double const alpha_s = 0.1, beta_s = 0.05; //g
-    double const g_s = 2/4; // Isy,相当于D
+    double const g_s = 2.0/4; // Isy,相当于D
     double const tau_ca = 6, kappa = 0.5, Ca_th = 0.2; //f
     double const gamma = 0.3, P = 0.8; //Iast
 
