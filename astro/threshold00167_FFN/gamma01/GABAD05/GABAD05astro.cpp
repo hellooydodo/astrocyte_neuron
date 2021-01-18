@@ -174,7 +174,7 @@ int main()
 					//	printf("m_infj=%.4f n_infj=%.4f Ca_er=%.10f J_channel=%.10f J_pump=%.10f J_leak=%.10f Ca=%.10f\n",m_infj,n_infj,Ca_er,J_channel,J_pump,J_leak,Ca0[i][j]);
                 	f[i][j] = f0[i][j] + (-f0[i][j]/tau_ca + (1 - f0[i][j])*kappa*max(Ca[i][j] - Ca_th,0))*dt; //胶质细胞和神经元的连接 
                 	//f表示了某一个胶质细胞和周围所有神经元的连接性，这个连接性只有胶质细胞（Ca浓度）决定 
-                	I_ast[i][j] = gamma*P*(f0[i-1][j-1] + f0[i][j-1] + f0[i-1][j] + f0[i][j]);
+                	I_ast[i][j] = -gamma*P*(f0[i-1][j-1] + f0[i][j-1] + f0[i-1][j] + f0[i][j]);
                 	//表示了某一个神经元受到周围胶质细胞的影响，(i,j)神经元附近的胶质细胞如上 
 				}			
                 I_slow[i][j] = I_slow0[i][j] + epsilon*(v_star - v0[i][j] - alpha*I_slow0[i][j])*dt;
@@ -210,7 +210,7 @@ int main()
 		//	fprintf(fp7,"%f\n",BB);
 			//}
 
-        if (ss>=190000 && ss<=200000 && ss%100 == 0){
+        if (ss>=1000000 && ss<=1100000 && ss%100 == 0){
             char s3[255] = "v_GABAD05_middle.txt";
             fp7 = fopen(s3,"a+");
             fprintf(fp7,"%.4f\n",v0[N_middle][N_middle]);

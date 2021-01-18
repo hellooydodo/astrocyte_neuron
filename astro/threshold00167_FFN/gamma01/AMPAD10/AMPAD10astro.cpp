@@ -211,7 +211,7 @@ int main()
 		//	fprintf(fp7,"%f\n",BB);
 			//}
 
-        if (ss>=190000 && ss<=200000 && ss%100 == 0){
+        if (ss>=1000000 && ss<=1100000 && ss%100 == 0){
             char s3[255] = "v_AMPAD10_middle.txt";
             fp7 = fopen(s3,"a+");
             fprintf(fp7,"%.4f\n",v0[N_middle][N_middle]);
