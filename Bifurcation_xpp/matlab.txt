@@ -1,0 +1,14 @@
+ plot(diagramg02head(:,1),diagramg02head(:,2),'-k')
+ hold on
+ plot(diagramg02dash(:,1),diagramg02dash(:,2),'--k')
+ plot(diagramg02tail(:,1),diagramg02tail(:,2),'-k')
+ plot(diagramg02bif(:,1),diagramg02bif(:,2),'--k')
+ plot(diagramg02bif(:,1),diagramg02bif(:,3),'--k')
+ plot(diagramg02head(:,1),diagramg02head(:,2),'-k')
+ hold on
+ plot(diagramg02dash(:,1),diagramg02dash(:,2),'--k')
+ plot(diagramg02tail(:,1),diagramg0 2tail(:,2),'-k')
+ plot(diagramg02bif(:,1),diagramg02bif(:,2),'-k')
+ plot(diagramg02bif(:,1),diagramg02bif(:,3),'-k')
+ axis([0 0.6 -0.6 0.6])
+ 

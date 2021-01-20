@@ -1,0 +1,49 @@
+#Morris-Lecar model
+v'=0.2*(-gl*(v-vl)-gk*n*(v-vk)-gca*minf(v)*(v-vca)+Isy+I_ast+Iex)
+n'=lamda*(ninf(v)-n)/tau(v)
+Ip3'=(Ip3_st-Ip3)/tau_Ip3+r_ip3/(1+exp(-(v-theta_s)/delta_s))
+q'=alpha_q*(1-q)-beta_q*q
+Ca'=J_channel+J_pump+J_leak
+f'=-f/tau_ca+(1-f)*kappa*max(Ca-Ca_th,0) 
+#parameter
+par Isy=0
+par gl=0.5,gk=2,gca=1.1
+par vl=-0.5,vk=-0.7,vca=1
+par lamda=0.04,v1=-0.01,v2=0.15,v3=0.01666667,v4=0.25
+
+#astro parameter
+par Iex=0
+#Jchannel,Jpump,Jleak
+par c1=0.185,av1=6,av2=0.11,av3=0.9,k3=0.5
+#m_inf,n_inf,alpha_q,beta_q,Ca_er...
+par d1=0.13,d2=1.049,d3=0.9434,d5=0.08234,a2=0.2,c0=2
+par Ip3_st=0.16,tau_Ip3=7,r_ip3=7.2
+par k_g=0.1
+par alpha=0.001,v_star=-0.22,epsilon=0.0005
+par alpha_s=0.1,beta_s=0.05
+par theta_s=0.2,delta_s=0.02
+par g_s=0.3/4
+par tau_ca=6,kappa=0.5,Ca_th=0.2
+par gamma=0.1,P=0.8
+
+#function  
+minf(v)=0.5*(1+tanh((v-v1)/v2))
+ninf(v)=0.5*(1+tanh((v-v3)/v4))
+tau(v)=1/cosh((v-v3)/(2*v4))
+
+
+##astro
+alpha_q=a2*d2*(Ip3+d1)/(Ip3+d3)
+beta_q=a2*Ca
+m_infj=Ip3/(Ip3+d1)
+n_infj=Ca/(Ca+d5)
+Ca_er=(c0-Ca)/c1
+J_channel=c1*av1*m_infj^3*n_infj^3*q^3*(Ca_er-Ca)
+J_pump=-av3*Ca^2/(k3^2+Ca^2)
+J_leak=c1*av2*(Ca_er-Ca)
+#胶质细胞和神经元的连接 f表示了某一个胶质细胞和周围所有神经元的连接性，这个连接性只有胶质细胞（Ca浓度）决定 
+I_ast=gamma*P*f
+
+@xlo=0,xhi=100,ylo=-0.8333,yhi=0.8333,total=1000
+@maxstor=10000
+done
