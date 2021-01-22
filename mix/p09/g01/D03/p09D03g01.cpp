@@ -173,7 +173,7 @@ int main()
 	ss = 0;
 	bool astro = 1;
 	// for(ss=0;ss<=time_step;ss++)
-    while (1)
+    while (ss<=30000000)
     {
         times += dt;
         ss = ss + 1;

@@ -125,7 +125,7 @@ double Vsmall[2][N+1];//´¢´æ1£¬1µãµ½ÖĞ¼äÄÇ¸öµã£¬µÚÒ»ÁĞ´æv£¬µÚ¶şÁĞ´æËù¾­Àú×îĞ¡Öµµ
 	double Vsum=0;
 	ss=0;
 	// for(ss=0;ss<=time_step;ss++)
-	while (1)
+	while (ss<=30000000)
     {
 	  times+=step;
 	  ss=ss+1;
