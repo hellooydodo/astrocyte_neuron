@@ -1,0 +1,9 @@
+2.60 syn
+2.70 nonsyn
+2.80 nonsyn
+2.70 syn
+2.80 syn
+2.90 nonsyn
+3.00 nonsyn
+2.90 syn
+3.00 syn

@@ -1,0 +1,11 @@
+1.10 syn
+1.20 nonsyn
+1.30 nonsyn
+1.20 syn
+1.30 syn
+1.40 nonsyn
+1.50 nonsyn
+1.40 syn
+1.50 nonsyn
+1.50 syn
+1.60 nonsyn

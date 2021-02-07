@@ -224,7 +224,7 @@ int main()
             fprintf(fp8,"%.4f\n",Isy[N_middle][N_middle]);
             fclose(fp8);*/
         }
-        if(ss%(10000*100)==0){
+        if(((ss<10000*100) && ss%(2000*100)==0) || (ss%(10000*100)==0)){
 				//FILE *fp2;
             char s[255];
             char s1[255];
