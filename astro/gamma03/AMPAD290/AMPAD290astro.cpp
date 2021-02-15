@@ -24,7 +24,7 @@ double f[N+2][N+2],f0[N+2][N+2];
 double I_ast[N+2][N+2];
 int const time_step = 100001;
 
-FILE *fp1,*fp2,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10,*fp11,*fp12;//,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10,*fp11,*fp12,*fp13;//,*fp12,*fp13,*fp14,*fp15,*fp16,*fp17,*fp18;
+FILE *fp1,*fp2,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10,*fp11,*fp12,*fp13;//,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10,*fp11,*fp12,*fp13;//,*fp12,*fp13,*fp14,*fp15,*fp16,*fp17,*fp18;
                                    //fp5和fp6分别存储n和s
 double max(double a,double b){
     if (a > b) return a;
@@ -218,10 +218,10 @@ int main()
             fp8 = fopen(s4,"a+");
             fprintf(fp8,"%.4f %4f\n",v0[44][50],Isy[44][50]);
             fclose(fp8);
-            /*char s4[255] = "Isy_GABAD03_middle.txt";
-            fp8 = fopen(s4,"a+");
-            fprintf(fp8,"%.4f\n",Isy[N_middle][N_middle]);
-            fclose(fp8);*/
+            char s6[255] = "Ca_IP3_sample.txt";
+            fp13 = fopen(s6,"a+");
+            fprintf(fp13,"%.4f %.4f\n",Ca0[44][50],Ip3_0[44][50]);
+            fclose(fp13);
         }
         if(((ss < (10000*100))&& (ss%(2000*100)==0)) || ss%(10000*100)==0){
 				//FILE *fp2;

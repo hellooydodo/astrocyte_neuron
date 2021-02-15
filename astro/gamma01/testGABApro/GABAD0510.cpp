@@ -218,10 +218,10 @@ for (double D = 0.6; D<=1.0; D+=0.1){
             fclose(fp7);
             char s4[255] = "v_Isyn_GABAD05_sample.txt";
             fp8 = fopen(s4,"a+");
-            fprintf(fp8,"%.4f %4f\n",v0[44][55],Isy[44][55]);
-            fclose(fp8);
-            /*char s4[255] = "Isy_GABAD03_middle.txt";
-            fp8 = fopen(s4,"a+");
+            char s6[255] = "Ca_IP3_sample.txt";
+            fp13 = fopen(s6,"a+");
+            fprintf(fp13,"%.4f %.4f\n",Ca0[44][50],Ip3_0[44][50]);
+            fclose(fp13);
             fprintf(fp8,"%.4f\n",Isy[N_middle][N_middle]);
             fclose(fp8);
         }*/
