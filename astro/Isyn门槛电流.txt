@@ -1,0 +1,5 @@
+double Isy1=1.745e-1-Iex,Isy2=4.147e-1-Iex;
+
+double Isy1=1.537e-1-Iex,Isy2=3.897e-1-Iex;
+
+double Isy1=1.3244e-1-Iex,Isy2=3.6714e-1-Iex;
