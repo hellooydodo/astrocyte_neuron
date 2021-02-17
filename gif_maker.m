@@ -12,7 +12,6 @@ for i = 1: length(subdir)
     end
     subdirpath = fullfile(maindir,subdir(i).name,'*.txt');
     File = dir(subdirpath);
-    %pic_num = (length(File) - 3)/3;
     figure(1);
     drawnow;
     if ~isempty(File) 
@@ -51,7 +50,7 @@ for i = 1: length(subdir)
                 end
                 pic_path = erase(string(maindir)+'\'+string(subdir(i).name)+'\'+string(File_name),'.txt')+'.png';
                 if exist(pic_path,'file') == 0
-                    %saveas(gcf, erase(string(maindir)+'\'+string(subdir(i).name)+'\'+string(File_name),'.txt')+'.png');
+                    saveas(gcf, erase(string(maindir)+'\'+string(subdir(i).name)+'\'+string(File_name),'.txt')+'.png');
                 end
                 pic_index = pic_index + 1;
                 if (b == true && pic_index < 5)
