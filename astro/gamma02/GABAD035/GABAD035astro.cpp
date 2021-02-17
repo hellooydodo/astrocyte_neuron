@@ -9,8 +9,7 @@
 int const  N = 101;//这里选个奇数，为了检测最中间的点
 double FFN=0;
 double const Iex = 0.22916;//the external current
-double Isy1=1.537e-1-Iex,Isy2=3.897e-1-Iex;
-double dt = 1e-2; //0.01ms
+double Isy1=1.537e-1-Iex,Isy2=3.897e-1-Iex;double dt = 1e-2; //0.01ms
 //double ar = 1.1,ad = 0.19;//AMPAd的情况
 double ar=5.0,ad=0.18;//GABA的情况
 double Vsyn = -0.5;//GABA的情况是-0.3，AMPA的情况是0
@@ -24,7 +23,7 @@ double f[N+2][N+2],f0[N+2][N+2];
 double I_ast[N+2][N+2];
 int const time_step = 100001;
 
-FILE *fp1,*fp2,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10;//,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10,*fp11,*fp12,*fp13;//,*fp12,*fp13,*fp14,*fp15,*fp16,*fp17,*fp18;
+FILE *fp1,*fp2,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10,*fp11,*fp12,*fp13;//,*fp3,*fp4,*fp5,*fp6,*fp7,*fp8,*fp9,*fp10,*fp11,*fp12,*fp13;//,*fp12,*fp13,*fp14,*fp15,*fp16,*fp17,*fp18;
                                    //fp5和fp6分别存储n和s
 double max(double a,double b){
     if (a > b) return a;
@@ -144,8 +143,7 @@ int main()
 	ss = 0;
 	bool astro = 1;
 	// for(ss=0;ss<=time_step;ss++)
-    while (ss<=30000000)
-    {
+    while (ss<=30000000){
         times += dt;
         ss = ss + 1;
         for(int i = 1; i <= N; i++){
@@ -218,13 +216,13 @@ int main()
             char s4[255] = "v_Isyn_GABAD035_sample.txt";
             fp8 = fopen(s4,"a+");
             fprintf(fp8,"%.4f %4f\n",v0[44][50],Isy[44][50]);
+            fclose(fp8);
             char s6[255] = "Ca_IP3_sample.txt";
             fp13 = fopen(s6,"a+");
             fprintf(fp13,"%.4f %.4f\n",Ca0[44][50],Ip3_0[44][50]);
             fclose(fp13);
-            fclose(fp8);*/
         }
-        if(ss%(10000*100)==0){
+        if(((ss < (10000*100))&& (ss%(2000*100)==0)) || ss%(10000*100)==0){
 				//FILE *fp2;
             char s[255];
             char s1[255];
@@ -263,7 +261,7 @@ int main()
                 fprintf(fp6,"\n");
             }
             fclose(fp6);
-        for(int i = 1;i <= N;i++){
+        	for(int i = 1;i <= N;i++){
                 for(int j = 1;j < N;j++){
                     fprintf(fp10,"%.4f ",Isy[i][j]);
                 }
@@ -271,7 +269,29 @@ int main()
                 fprintf(fp10,"\n");
             }
             fclose(fp10);
-        }
+        	char s7[255];
+			sprintf(s7,"%dCaGABAD035.txt",ss/100);
+			fp11 = fopen(s7,"w");
+        	for(int i = 1;i <= N;i++){
+                for(int j = 1;j < N;j++){
+                    fprintf(fp11,"%.4f ",Ca0[i][j]);
+                }
+                fprintf(fp11,"%.4f",Ca0[i][N]);
+                fprintf(fp11,"\n");
+            }
+            fclose(fp11);
+        	char s8[255];
+			sprintf(s8,"%dIPGABAD035.txt",ss/100);
+			fp12 = fopen(s8,"w");
+        	for(int i = 1;i <= N;i++){
+                for(int j = 1;j < N;j++){
+                    fprintf(fp12,"%.4f ",Ip3_0[i][j]);
+                }
+                fprintf(fp12,"%.4f",Ip3_0[i][N]);
+                fprintf(fp12,"\n");
+            }
+            fclose(fp12);
+        }     
         if (ss%(2000*100)==0){
 			FFN /=(2000*100);
 			FFN /=(N*N);
