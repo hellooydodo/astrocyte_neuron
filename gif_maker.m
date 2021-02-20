@@ -36,7 +36,7 @@ for i = 1: length(subdir)
         end
         File_path = string(maindir)+'\'+string(subdir(i).name)+'\'+string(File_name);
         gif_path = string(maindir)+'\'+string(subdir(i).name)+'\'+data_name+pic_name+'.gif';
-       if exist(gif_path,'file') == 0
+       %if exist(gif_path,'file') == 0
             while ~exist(File_path,'file') == 0
                 data = importdata(File_path);
                 pcolor(x,y,data);
@@ -64,6 +64,6 @@ for i = 1: length(subdir)
                 end
                 File_path = string(maindir)+'\'+string(subdir(i).name)+'\'+string(File_name);
             end
-        end
+       % end
     end
 end
