@@ -4,7 +4,7 @@
 #include <iostream>  
 #include <sys/stat.h>
 using namespace std;
-#define PATH "D:\\Data\\astrocyte_neuron\\astro\\gamma03"
+#define PATH "D:\\Data\\astrocyte_neuron\\astro\\gamma04"
 int dir_num=0;
 string dirs[5000];
 int _System(const char* cmd, char* pRetMsg, int msg_len,std::string path)
