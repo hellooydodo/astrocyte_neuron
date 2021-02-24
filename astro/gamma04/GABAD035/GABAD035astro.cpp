@@ -139,7 +139,7 @@ int main()
     double const alpha_s = 0.1, beta_s = 0.05; //g
     double const g_s = 0.35/4; // Isy,Ïàµ±ÓÚD
     double const tau_ca = 6, kappa = 0.5, Ca_th = 0.2; //f
-    double const gamma = 0.1, P = 0.8; //Iast
+    double const gamma = 0.4, P = 0.8; //Iast
 
 	ss = 0;
 	bool astro = 1;
