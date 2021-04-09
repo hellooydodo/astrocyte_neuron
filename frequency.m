@@ -3,12 +3,13 @@
 clear;
 close all;
 
-load v_Isyn_AMPAD420_sample.txt              %通过仪器测量的原始数据，存储为data.txt中，附件中有一个模版(该信号极不规则)
-A=v_Isyn_AMPAD420_sample;                                        %将测量数据赋给A，此时A为N×2的数组
+load v_Isyn_AMPAD260_sample.txt              %通过仪器测量的原始数据，存储为data.txt中，附件中有一个模版(该信号极不规则)
+A=v_Isyn_AMPAD260_sample;                                        %将测量数据赋给A，此时A为N×2的数组
 %x=A(:,1);                                     %将A中的第一列赋值给x，形成时间序列
 %x=x';                                           %将列向量变成行向量
-x = 10:0.001:11;
+x = 0.001:0.001:length(A)/1000;
 y=A(:,1);                                     %将A中的第二列赋值给y，形成被测量序列
+%,v0[44][50],Iion(v0[44][50],n0[44][50]),Isy[44][50],I_slow0[44][50],I_ast[44][55],Ca0[44][50],Ip3_0[44][50]);
 y=y';                                           %将列向量变成行向量
 
 %显示数据基本信息
@@ -23,14 +24,14 @@ fprintf('        最大速度 = %7.3f m/s\n',max(y))                          %�
 fprintf('        标准方差 = %7.3f \n',std(y))                               %输出本次采样数据标准差
 fprintf('       协 方 差 = %7.3f \n',cov(y))                                %输出本次采样数据协方差
 fprintf('     自相关系数 = %7.3f \n\n',corrcoef(y))                       %输出本次采样数据自相关系数
-  
+set(gca,'FontSize',20,'Fontname', 'Times New Roman');
 %显示原始数据曲线图（时域）
 subplot(2,1,1);
 plot(x,y)                                                                                %显示原始数据曲线图
-axis([min(x) max(x) 1.1*(min(y)) 1.1*(max(y))])             %优化坐标，可有可无
-xlabel('时间 (s)');
-ylabel('被测变量y');
-title('原始信号(时域)');
+axis([min(x) max(x) 0.9*(min(y)) 1.1*(max(y))])             %优化坐标，可有可无
+xlabel('Time (s)','FontName','Times New Roman','FontSize',12);
+ylabel('Calcium concentration','FontName','Times New Roman','FontSize',12);
+%title('原始信号(时域)');
 grid on;
 
 %傅立叶变换
@@ -46,7 +47,7 @@ Pyy=Mag.^2;          %能量；对实数系列X，有 X.*X=X.*conj(X)=abs(X).^2=
 
 %显示频谱图(频域)
 subplot(2,1,2)
-plot(f(1:N/2),Pyy(1:N/2),'r')                         %显示频谱图
+semilogx(f(1:N/2),Pyy(1:N/2),'r')                         %显示频谱图
 %                 |
 %             将这里的Pyy改成Mag就是 幅值-频率图了
 axis([min(f(1:N/2)) max(f(1:N/2)) 0 1.1*(max(Pyy(1:N/2)))]) 

@@ -40,6 +40,9 @@ for i = 1: length(subdir)
             while ~exist(File_path,'file') == 0
                 data = importdata(File_path);
                 pcolor(x,y,data);
+                axis off
+                set(gcf,'unit','centimeters','position',[10 10 15 15])
+                set(gca,'Position',[0 0 1 1]);
                 F=getframe(gcf);
                 I=frame2im(F);
                 [I,map]=rgb2ind(I,256);
@@ -49,9 +52,9 @@ for i = 1: length(subdir)
                     imwrite(I,map,gif_path,'gif','WriteMode','append','DelayTime',0.2);
                 end
                 pic_path = erase(string(maindir)+'\'+string(subdir(i).name)+'\'+string(File_name),'.txt')+'.png';
-                if exist(pic_path,'file') == 0
+                %if exist(pic_path,'file') == 0
                     saveas(gcf, erase(string(maindir)+'\'+string(subdir(i).name)+'\'+string(File_name),'.txt')+'.png');
-                end
+                %end
                 pic_index = pic_index + 1;
                 if (b == true && pic_index < 5)
                     File_name  = string(2*pic_index)+'000'+data_name+pic_name+'.txt';
