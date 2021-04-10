@@ -9,7 +9,7 @@
 int const  N = 101;//这里选个奇数，为了检测最中间的点
 double FFN=0;
 double const Iex = 0.22916;//the external current
-double Isy1=7.366466E-02-Iex,Isy2=3.238830E-01-Iex;
+double Isy1=9.467985e-2-Iex,Isy2=3.095407e-1-Iex;
 double dt = 1e-2; //0.01ms
 double ar = 1.1,ad = 0.19;//AMPAd的情况
 //double ar=5.0,ad=0.18;//GABA的情况
@@ -137,7 +137,7 @@ int main()
 	double const theta_s = 0.2, delta_s = 0.02; // [T]
 	double const alpha = 0.001, v_star = -0.22, epsilon = 0.0005; // Islow
     double const alpha_s = 0.1, beta_s = 0.05; //g
-    double const g_s = 3.0/4; // Isy,相当于D
+    double const g_s = 4.0/4; // Isy,相当于D
     double const tau_ca = 6, kappa = 0.5, Ca_th = 0.2; //f
     double const gamma = 0.6, P = 0.8; //Iast
 

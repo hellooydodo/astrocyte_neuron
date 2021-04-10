@@ -9,7 +9,7 @@
 int const  N = 101;//这里选个奇数，为了检测最中间的点
 double FFN=0;
 double const Iex = 0.22916;//the external current
-double Isy1=1.745e-1-Iex,Isy2=4.147e-1-Iex;
+double Isy1=7.366466E-02-Iex,Isy2=3.238830E-01-Iex;
 double dt = 1e-2; //0.01ms
 double ar = 1.1,ad = 0.19;//AMPAd的情况
 //double ar=5.0,ad=0.18;//GABA的情况
