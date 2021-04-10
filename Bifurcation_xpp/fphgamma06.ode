@@ -22,7 +22,7 @@ par alpha_s=0.1,beta_s=0.05
 par theta_s=0.2,delta_s=0.02
 par g_s=0.075
 par tau_ca=6,kappa=0.5,Ca_th=0.2
-par gamma=0.5,P=0.8
+par gamma=0.6,P=0.8
 
 #function  
 minf(v)=0.5*(1+tanh((v-v1)/v2))
