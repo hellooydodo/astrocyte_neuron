@@ -20,7 +20,7 @@ par k_g=0.1
 par alpha=0.001,v_star=-0.22,epsilon=0.0005
 par alpha_s=0.1,beta_s=0.05
 par theta_s=0.2,delta_s=0.02
-par g_s=0.075
+par g_s=1
 par tau_ca=6,kappa=0.5,Ca_th=0.2
 par gamma=1,P=0.8
 

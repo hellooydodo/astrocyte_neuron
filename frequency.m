@@ -3,8 +3,8 @@
 clear;
 close all;
 
-load v_Isyn_AMPAD260_sample.txt              %通过仪器测量的原始数据，存储为data.txt中，附件中有一个模版(该信号极不规则)
-A=v_Isyn_AMPAD260_sample;                                        %将测量数据赋给A，此时A为N×2的数组
+load v_Isyn_AMPAD100_sample.txt              %通过仪器测量的原始数据，存储为data.txt中，附件中有一个模版(该信号极不规则)
+A=v_Isyn_AMPAD100_sample;                                        %将测量数据赋给A，此时A为N×2的数组
 %x=A(:,1);                                     %将A中的第一列赋值给x，形成时间序列
 %x=x';                                           %将列向量变成行向量
 x = 0.001:0.001:length(A)/1000;
