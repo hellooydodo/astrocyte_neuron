@@ -2,4 +2,7 @@
 .DS_store
 *.png
 *.txt
-!*v.txt
+!*v*.txt
+!FFN*.txt
+!*sample.txt
+!*middle.txt
