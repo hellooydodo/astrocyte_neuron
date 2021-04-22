@@ -1,3 +1,5 @@
 /test/
 .DS_store
 *.png
+*.txt
+!*v.txt
