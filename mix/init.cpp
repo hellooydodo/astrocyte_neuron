@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-double p = 0.9;
+double p = 0.5;
 int const  N = 101;//这里选个奇数，为了检测最中间的点
 FILE *fp9;
 int main(){
@@ -24,7 +24,7 @@ int main(){
 	while (count_ampa < num_ampa){
 		int xx = rand() % N;
 		int yy = rand() % N;
-		if (ampa[xx][yy] == -1) {
+		if (xx>0 && yy >0 && ampa[xx][yy] == -1) {
 			ampa[xx][yy] = 1;
 			//Vsyn[xx][yy] = 0;
 			//ad[xx][yy] = 0.19;
