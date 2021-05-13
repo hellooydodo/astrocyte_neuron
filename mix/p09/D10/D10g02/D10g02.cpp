@@ -75,7 +75,7 @@ int main()
     else N_middle=N/2;
 	FILE *fp;
 
-	if((fp=fopen("../.../../ampa distribution.txt","r"))==NULL)//判断文件是否打开成功 
+	if((fp=fopen("../../ampa distribution.txt","r"))==NULL)//判断文件是否打开成功 
 	{//读取D盘下，名为123的文本文件 
 	printf("文件打开失败\n");
 	exit(0);
